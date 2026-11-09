@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dados-de-bolso"
+version = "0.1.0"
+description = "Inspecione arquivos CSV pelo terminal, sem dependências externas."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Semsic" }]
+
+[project.scripts]
+dados-de-bolso = "dados_de_bolso.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
