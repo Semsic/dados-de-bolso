@@ -45,6 +45,10 @@ def inspect_csv(path: Path, delimiter: str | None, encoding: str) -> dict[str, A
             raise ValueError("não encontrei cabeçalho; sem ele, até planilha fica tímida")
 
         names = [name.strip() for name in reader.fieldnames]
+        if any(not name for name in names):
+            raise ValueError("há uma coluna sem nome no cabeçalho")
+        if len(set(names)) != len(names):
+            raise ValueError("há nomes de coluna repetidos; escolhe um nome diferente para cada uma")
         empty = Counter({name: 0 for name in names})
         kinds: dict[str, set[str]] = {name: set() for name in names}
         seen: set[tuple[str, ...]] = set()
